@@ -1,0 +1,15 @@
+# Set Keymap
+setxkbmap mac-uk &
+
+# Restore Wallpaper
+nitrogen --restore &
+
+# Compositor
+picom &
+
+# Enable Copy/Paste
+vmware-user
+
+# Enable Polybar
+
+$HOME/.config/polybar/launch.sh
