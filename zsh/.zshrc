@@ -173,6 +173,7 @@ alias vi="nvim"
 alias vim="nvim"
 # alias code="codium"
 alias ls="lsd"
+alias tree="tree -I 'node_modules|.git|.history' -a"
 
 
 ## git aliases
