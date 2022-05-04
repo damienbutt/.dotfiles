@@ -1,0 +1,40 @@
+[directory]
+style = "bold blue"
+
+[git_metrics]
+disabled = false
+
+# [git_status]
+# format = '([\[$all_status$ahead_behind\]]($style) )'
+# conflicted = "🏳"
+# ahead = "🏎💨"
+# behind = "😰"
+# diverged = "😵"
+# ahead = "🏎💨 ⇡${count}"
+# diverged = "😵 ⇕⇡${ahead_count}⇣${behind_count}"
+# behind = "😰 ⇣${count}"
+# untracked = "🤷"
+# stashed = "📦"
+# modified = "📝"
+# staged = '[++\($count\)](green)'
+# renamed = "👅"
+# deleted = "🗑"
+# up_to_date = '[✔](bold green)'
+
+# [localip]
+# disabled = false
+# ssh_only = false
+
+[python]
+python_binary = ["./venv/bin/python", "python3"]
+
+# [shell]
+# disabled = false
+
+[status]
+disabled = false
+map_symbol = true
+pipestatus = true
+
+[sudo]
+disabled = false
