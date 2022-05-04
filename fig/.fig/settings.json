@@ -1,0 +1,11 @@
+{
+  "app.beta" : true,
+  "autocomplete.disable" : false,
+  "autocomplete.fontFamily" : "",
+  "autocomplete.keybindings.tab" : "insertSelected",
+  "autocomplete.theme" : "dracula",
+  "integrations.experimental" : true,
+  "integrations.vscode.disabled" : false,
+  "plugins.beta" : true,
+  "telemetry.disabled" : true
+}
