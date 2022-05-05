@@ -21,7 +21,7 @@ colorscheme dracula_pro
 
 
 set formatoptions-=cro
-set tabstop=2
+set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
 
