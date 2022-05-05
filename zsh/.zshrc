@@ -301,8 +301,7 @@ eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval $(thefuck --alias)
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Fig post block. Keep at the bottom of this file.
 . "$HOME/.fig/shell/zshrc.post.zsh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
