@@ -7,6 +7,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -33,7 +35,7 @@ export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 
 export GPG_TTY=$(tty)
 
-export BAT_CONFIG_PATH=$HOME/.config/bat/bat.conf
+export BAT_CONFIG_PATH=$XDG_CONFIG_HOME/bat/bat.conf
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
