@@ -183,6 +183,7 @@ alias vim="nvim"
 alias ls="lsd"
 alias tree="tree -I 'node_modules|.git|.history' -a"
 alias stow="stow --ignore='.*\.(secret)'"
+alias mkdir="mkdir -p"
 
 ## git aliases
 function gci { git commit -m "$@"; }
