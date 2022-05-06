@@ -15,7 +15,7 @@ CVS
 \.gitignore
 \.gitsecret
 
-.\*\.(secret)
+.*\.(secret)
 
 .+~ # emacs backup files
 \#.\*\# # emacs autosave files
