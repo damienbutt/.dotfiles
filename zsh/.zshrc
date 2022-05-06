@@ -298,6 +298,8 @@ if type brew &>/dev/null; then
     compinit
 fi
 
+source $XDG_CONFIG_HOME/fzf/fzf.sh
+source $ENHANCD_DIR/enhancd.sh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
