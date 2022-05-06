@@ -1,2 +1,5 @@
 .history/
 .DS_Store
+.gitsecret/keys/random_seed
+!*.secret
+git/.user.gitconfig
