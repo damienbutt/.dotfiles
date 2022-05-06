@@ -10,6 +10,10 @@ fi
 export XDG_CONFIG_HOME=$HOME/.config
 
 export PYENV_ROOT=$HOME/.pyenv
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/bin:$PATH
