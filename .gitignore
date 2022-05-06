@@ -3,3 +3,4 @@
 .gitsecret/keys/random_seed
 !*.secret
 git/.user.gitconfig
+cfcli/.cfcli.yml

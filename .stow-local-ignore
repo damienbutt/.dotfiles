@@ -4,24 +4,24 @@ RCS
 .+,v
 
 CVS
-\.\#.+       # CVS conflict files / emacs lock files
+\.\#.+ # CVS conflict files / emacs lock files
 \.cvsignore
 
 \.svn
-_darcs
+\_darcs
 \.hg
 
 \.git
 \.gitignore
 \.gitsecret
 
-.*\.secret
+.\*\.(secret)
 
-.+~          # emacs backup files
-\#.*\#       # emacs autosave files
+.+~ # emacs backup files
+\#.\*\# # emacs autosave files
 
-^/README.*
-^/LICENSE.*
+^/README._
+^/LICENSE._
 ^/COPYING
 
 \.DS_Store
