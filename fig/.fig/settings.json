@@ -1,11 +1,15 @@
 {
-  "app.beta" : true,
-  "autocomplete.disable" : false,
-  "autocomplete.fontFamily" : "",
-  "autocomplete.keybindings.tab" : "insertSelected",
-  "autocomplete.theme" : "dracula",
-  "integrations.experimental" : true,
-  "integrations.vscode.disabled" : false,
-  "plugins.beta" : true,
-  "telemetry.disabled" : true
+  "app.beta": true,
+  "autocomplete.fontFamily": "\"FiraCode Nerd Font\"",
+  "autocomplete.fontSize": 18,
+  "autocomplete.height": 140,
+  "autocomplete.insertSpaceAutomatically": false,
+  "autocomplete.keybindings.enter": "ignore",
+  "autocomplete.keybindings.tab": "insertCommonPrefixOrInsertSelected",
+  "autocomplete.theme": "dracula",
+  "autocomplete.width": 320,
+  "integrations.experimental": true,
+  "integrations.vscode.disabled": false,
+  "plugins.beta": true,
+  "telemetry.disabled": true
 }
