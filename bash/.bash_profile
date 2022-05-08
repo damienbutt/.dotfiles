@@ -86,3 +86,4 @@ complete -C /usr/local/bin/mc mc
 
 # Fig post block. Keep at the bottom of this file.
 . "$HOME/.fig/shell/bash_profile.post.bash"
+. "$HOME/.cargo/env"
