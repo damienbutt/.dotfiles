@@ -184,7 +184,7 @@ alias ls="lsd"
 alias tree="exa -T -a --icons -I 'node_modules|.git|.history'"
 alias stow="stow --ignore='.*\.(secret)'"
 alias mkdir="mkdir -p"
-alias cd="z"
+# alias cd="z"
 alias cat="bat"
 alias catp="bat -p"
 alias grep="rg -. -i"
@@ -305,7 +305,7 @@ function commands() {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-neofetch
+# neofetch
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/mc mc
