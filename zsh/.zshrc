@@ -187,6 +187,7 @@ alias mkdir="mkdir -p"
 alias cd="z"
 alias cat="bat"
 alias catp="bat -p"
+alias grep="rg -. -i"
 
 ## git aliases
 function gci { git commit -m "$@"; }
