@@ -189,6 +189,25 @@ alias cat="bat"
 alias catp="bat -p"
 alias grep="rg -. -i"
 
+function static-dock {
+  defaults write com.apple.dock static-only -bool $@
+  killall Dock
+}
+
+function show-path {
+  defaults write com.apple.finder _FXShowPosixPathInTitle -bool $@
+  killall Finder
+}
+
+function sort-folders-first {
+  defaults write com.apple.finder _FXSortFoldersFirst -bool $@
+  killall Finder
+}
+
+function press-and-hold {
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool $@
+}
+
 ## git aliases
 function gci { git commit -m "$@"; }
 function gaci { git commit -am "$@"; }
