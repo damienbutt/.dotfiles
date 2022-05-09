@@ -185,6 +185,8 @@ alias tree="tree -I 'node_modules|.git|.history' -a"
 alias stow="stow --ignore='.*\.(secret)'"
 alias mkdir="mkdir -p"
 alias cd="z"
+alias cat="bat"
+alias catp="bat -p"
 
 ## git aliases
 function gci { git commit -m "$@"; }
