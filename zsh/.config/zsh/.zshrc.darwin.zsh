@@ -22,11 +22,11 @@ export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 
 export GPG_TTY=$(tty)
 
-# User configuration
-
 export BAT_CONFIG_PATH=$XDG_CONFIG_HOME/bat/bat.conf
 
 source $XDG_CONFIG_HOME/zsh/oh-my-zsh/oh-my-zsh.zsh
+
+# User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
