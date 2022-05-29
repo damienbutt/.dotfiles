@@ -84,6 +84,7 @@ export PATH
 
 complete -C /usr/local/bin/mc mc
 
+. "$HOME/.cargo/env"
+
 # Fig post block. Keep at the bottom of this file.
 . "$HOME/.fig/shell/bash_profile.post.bash"
-. "$HOME/.cargo/env"
