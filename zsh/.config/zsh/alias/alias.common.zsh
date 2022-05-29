@@ -87,12 +87,12 @@ alias dockerup='docker-compose up -d'
 alias dockerrm='docker-compose rm --all'
 
 ## other aliases
-alias zshrc='code ~/.zshrc'
+alias zshrc="code $ZDOTDIR/.zshrc"
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
 alias usage='du -h -d1'
-alias update="source ~/.zshrc"
+alias update="source $ZDOTDIR/.zshrc"
 alias sshdir="cd ~/.ssh"
 alias runp="lsof -i "
 alias md="mkdir "

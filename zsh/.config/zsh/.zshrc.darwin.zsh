@@ -1,12 +1,12 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+source $HOME/.fig/shell/zshrc.pre.zsh
 
 export PYENV_ROOT=$HOME/.pyenv
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-source $XDG_CONFIG_HOME/zsh/path/path.darwin.zsh
+source $ZDOTDIR/path/path.darwin.zsh
 
 # export NPM_CONFIG_PREFIX=~/.npm
 
@@ -24,7 +24,7 @@ export GPG_TTY=$(tty)
 
 export BAT_CONFIG_PATH=$XDG_CONFIG_HOME/bat/bat.conf
 
-source $XDG_CONFIG_HOME/zsh/oh-my-zsh/oh-my-zsh.zsh
+source $ZDOTDIR/oh-my-zsh/oh-my-zsh.zsh
 
 # User configuration
 
@@ -51,8 +51,8 @@ source $XDG_CONFIG_HOME/zsh/oh-my-zsh/oh-my-zsh.zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source $XDG_CONFIG_HOME/zsh/alias/alias.darwin.zsh
-source $XDG_CONFIG_HOME/zsh/alias/alias.common.zsh
+source $ZDOTDIR/alias/alias.darwin.zsh
+source $ZDOTDIR/alias/alias.common.zsh
 
 # neofetch
 
@@ -73,7 +73,7 @@ fi
 source $XDG_CONFIG_HOME/fzf/fzf.sh
 source $ENHANCD_DIR/enhancd.sh
 
-source $XDG_CONFIG_HOME/zsh/plugin/plugin.darwin.zsh
+source $ZDOTDIR/plugin/plugin.darwin.zsh
 
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
@@ -83,4 +83,4 @@ eval "$(pyenv init -)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
+source $HOME/.fig/shell/zshrc.post.zsh

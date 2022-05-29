@@ -3,7 +3,7 @@ export PYENV_ROOT=$HOME/.pyenv
 # export ZPLUG_HOME=/usr/local/opt/zplug
 # source $ZPLUG_HOME/init.zsh
 
-source $XDG_CONFIG_HOME/zsh/path/path.linux.zsh
+source $ZDOTDIR/path/path.linux.zsh
 
 # Set NPM Prefix
 export NPM_CONFIG_PREFIX=$HOME/.npm
@@ -14,7 +14,7 @@ export GPG_TTY=$(tty)
 
 export BAT_CONFIG_PATH=$XDG_CONFIG_HOME/bat/bat.conf
 
-source $XDG_CONFIG_HOME/zsh/oh-my-zsh/oh-my-zsh.zsh
+source $ZDOTDIR/oh-my-zsh/oh-my-zsh.zsh
 
 # User configuration
 
@@ -42,8 +42,8 @@ source $XDG_CONFIG_HOME/zsh/oh-my-zsh/oh-my-zsh.zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $XDG_CONFIG_HOME/zsh/alias/alias.linux.zsh
-source $XDG_CONFIG_HOME/zsh/alias/alias.common.zsh
+source $ZDOTDIR/alias/alias.linux.zsh
+source $ZDOTDIR/alias/alias.common.zsh
 
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/local/bin/mc mc
@@ -51,7 +51,7 @@ source $XDG_CONFIG_HOME/zsh/alias/alias.common.zsh
 source $XDG_CONFIG_HOME/fzf/fzf.sh
 source $ENHANCD_DIR/enhancd.sh
 
-source $XDG_CONFIG_HOME/zsh/plugin/plugin.linux.zsh
+source $ZDOTDIR/plugin/plugin.linux.zsh
 
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
