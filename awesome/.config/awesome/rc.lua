@@ -45,13 +45,16 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
--- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.init("~/.config/awesome/themes/dracula/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
+
+-- Default apps
+browser = "firefox"
+files = "nautilus"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -64,18 +67,18 @@ modkey = "Mod4"
 awful.layout.layouts = {
 --    awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
+--    awful.layout.suit.tile.left,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.tile.top,
+--    awful.layout.suit.fair,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.max,
+--    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.magnifier,
+--    awful.layout.suit.corner.nw,
+--    -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
@@ -84,27 +87,29 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "Manual", terminal .. " -e man awesome" },
+   { "Edit Config", editor_cmd .. " " .. awesome.conffile },
+   { "Restart", awesome.restart },
+   { "Quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "Terminal", terminal },
+                                    { "Browser", browser },
+                                    { "Files", files }
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+--mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+--mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -314,6 +319,28 @@ globalkeys = gears.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
+    
+    -- Rofi
+    awful.key({ modkey }, "space",
+                function ()
+                    --awful.util.spawn("rofi -combi-modi window,drun,ssh -theme solarized -font 'FiraCode' -show combi -icon-theme 'Papirus' -show-icons")
+                    awful.util.spawn("rofi -combi-modi drun -theme solarized -font 'FiraCode' -show combi -icon-theme 'Papirus' -show-icons")
+                end,
+                {description = "rofi", group = "launcher"}),
+    
+    -- Firefox
+    awful.key({ modkey }, "b",
+                function ()
+                    awful.util.spawn("firefox")
+                end,
+                {description = "Launch Firefox", group = "applications"}),
+    
+    -- Firefox
+    awful.key({ modkey }, "f",
+                function ()
+                    awful.util.spawn("nautilus")
+                end,
+                {description = "Launch Files", group = "applications"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -556,15 +583,25 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---    c:emit_signal("request::activate", "mouse_enter", {raise = false})
--- end)
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
 -- Autostart
-awful.spawn.with_shell("picom")
-awful.spawn.with_shell("dropbox")
--- awful.spawn.with_shell("picom")
+os.execute("/usr/lib/polkit-1/polkitd --no-debug &")
+os.execute("setxkbmap -layout gb -variant mac &")
+-- os.execute("")
+-- awful.spawn.with_shell("/usr/libexec/gsd-xsettings")
+awful.spawn.with_shell("sleep 3; nm-applet")
+awful.spawn.with_shell("picom -CGb")
+--awful.spawn.with_shell("dropbox start")
+--awful.spawn.with_shell("xbindkeys")
+--awful.spawn.with_shell("flameshot")
+-- awful.spawn.with_shell("feh --bg-fill -r -z ~/Pictures/wallpapers/wallpapers")
+-- awful.spawn.with_shell("--no-startup-id xautolock -time 3 -locker 'betterlockscreen -l dim' -detectsleep")
+-- awful.spawn.with_shell("--no-startup-id xautolock -time 10 -locker 'systemctl suspend'")
+--awful.spawn.with_shell("${XDG_CONFIG_HOME}/polybar/launch.sh")
