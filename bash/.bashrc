@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/bashrc.pre.bash"
+[[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
 
@@ -7,5 +7,7 @@
 export PATH="/Users/damienbutt/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+
+
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/bashrc.post.bash"
+[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"

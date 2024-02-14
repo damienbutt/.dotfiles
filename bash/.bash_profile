@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/bash_profile.pre.bash"
+[[ -f "$HOME/.fig/shell/bash_profile.pre.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.pre.bash"
 export PATH="/Library/Application Support/GoodSync":$PATH
 # Setting PATH for MacPython 2.6
 # The orginal version is saved in .bash_profile.pysave
@@ -87,4 +87,4 @@ complete -C /usr/local/bin/mc mc
 . "$HOME/.cargo/env"
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/bash_profile.post.bash"
+[[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
