@@ -28,8 +28,11 @@ disabled = false
 [python]
 python_binary = ["./venv/bin/python", "python3"]
 
-# [shell]
-# disabled = false
+[shell]
+powershell_indicator = "pwsh"
+zsh_indicator = ""
+style = "cyan"
+disabled = true
 
 [status]
 disabled = false
