@@ -85,6 +85,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export LDFLAGS="-L/usr/local/opt/ruby/lib"
     export CPPFLAGS="-I/usr/local/opt/ruby/include"
     export PKG_CONFIG_PATH=/usr/local/opt/ruby/lib/pkgconfig
+    export PINENTRY_USER_DATA="USE_CURSES=1"
 
     if type brew &>/dev/null; then
         FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -358,7 +359,7 @@ zplug "b4b4r07/emoji-cli" #, \
 # after executing compinit command and sourcing other plugins
 # (If the defer tag is given 2 or above, run after compinit command)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zdharma-continuum/fast-syntax-highlighting", defer:2
+# zplug "zdharma-continuum/fast-syntax-highlighting", defer:2
 
 # Can manage local plugins
 zplug "~/.zsh", from:local
