@@ -62,14 +62,14 @@ fi
 
 # Env
 export ZPLUG_HOME="$HOME/.zplug"
-export PAGER="most"
+export PAGER="less"
 export COLORTERM="truecolor"
 export GPG_TTY="$(tty)"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export EDITOR="nvim"
 export PYENV_ROOT="$HOME/.pyenv"
-export BROWSER="lynx"
+export BROWSER="firefox"
 export SASS="dart"
 export LESS="FRX"
 export ANSIBLE_USER="damien"
@@ -117,14 +117,12 @@ alias npm-update="npx npm-check -u"
 alias cls="clear"
 alias vi="nvim"
 alias vim="nvim"
-# alias code="codium"
 alias ls="exa --icons --header --git --group"
 alias tree="exa -T -a --icons -I 'node_modules|.git|.history'"
 alias stow="stow --ignore='.*\.(secret)'"
 alias mkdir="mkdir -p"
-# alias cd="z"
 alias cat="bat"
-alias grep="rg -. -i"
+alias grep="rga -. -i"
 alias cp='cp -ip'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -135,6 +133,7 @@ function gaci { git commit -am "$@"; }
 alias gc="git commit"
 alias gco="git checkout"
 alias gsw="git switch"
+alias gsm="gsw master"
 alias gs="git status"
 alias gpull="git pull"
 alias gf="git fetch"
@@ -247,6 +246,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias touch="ad"
     alias rm="rm -i"
     alias mv="mv -i"
+    alias sed="gsed"
 
     function static-dock {
         defaults write com.apple.dock static-only -bool $@
@@ -322,7 +322,7 @@ zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
 #     hook-build:"make && sudo make install"
 
 # Supports checking out a specific branch/tag/commit
-zplug "b4b4r07/enhancd" #, at:v1
+# zplug "b4b4r07/enhancd" #, at:v1
 # zplug "mollifier/anyframe", at:4c23cb60
 
 # Can manage gist file just like other packages
