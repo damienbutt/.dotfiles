@@ -126,6 +126,7 @@ alias grep="rga -. -i"
 alias cp='cp -ip'
 alias mv='mv -i'
 alias rm='rm -i'
+alias ddg='ddgr'
 
 ## git aliases
 function gci { git commit -m "$@"; }
