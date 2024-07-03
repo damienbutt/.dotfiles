@@ -1,21 +1,38 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt extendedglob notify
-unsetopt autocd beep nomatch
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=${HISTSIZE}
+HISTDUP=erase
+setopt extendedglob
+setopt notify
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+unsetopt autocd
+unsetopt beep
+unsetopt nomatch
+
 bindkey -e
-# End of lines configured by zsh-newuser-install
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
 
-# The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+autoload -Uz compinit && compinit
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # pnpm
@@ -43,8 +60,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH=$HOME/.dotnet/tools:$PATH
     export PATH=$GOPATH/bin:$PATH
     export PATH=$HOME/.kit/bin:$PATH
+    export PATH=/usr/local/bin:$PATH
     export PATH=$HOME/.kenv/bin:$PATH
     export PATH=$HOME/.config/emacs/bin:$PATH
+    export PATH=/usr/local/opt/bc/bin:$PATH
+    export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
 if [[ "$OSTYPE" == "linux"* ]]; then
@@ -61,6 +81,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then
 fi
 
 # Env
+export NVIM_APPNAME="nvim-lazyvim"
 export ZPLUG_HOME="$HOME/.zplug"
 export PAGER="less"
 export COLORTERM="truecolor"
@@ -74,8 +95,8 @@ export SASS="dart"
 export LESS="FRX"
 export ANSIBLE_USER="damien"
 export ANSIBLE_NOCOWS=1
-export BAT_CONFIG_PATH="$XDG_CONFIG_HOME/bat/bat.conf"
-export NPM_CONFIG_PREFIX="$HOME/.npm"
+export BAT_CONFIG_PATH="${XDG_CONFIG_HOME}/bat/bat.conf"
+export NPM_CONFIG_PREFIX="${HOME}/.npm"
 export ENHANCD_DIR="$HOME/.enhancd"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -105,15 +126,8 @@ fi
 ########################################################################
 alias nmap="sudo nmap"
 alias c="code ."
-alias ll="ls -1a"
-alias ..="cd ../"
-alias ..l="cd ../ && ll"
 alias pg="echo 'Pinging Google' && ping www.google.com"
-alias de="cd ~/Desktop"
-alias dd="cd ~/code"
-alias d="cd ~/code && cd "
 alias deleteDSFiles="find . -name '.DS_Store' -type f -delete"
-alias npm-update="npx npm-check -u"
 alias cls="clear"
 alias vi="nvim"
 alias vim="nvim"
@@ -123,10 +137,11 @@ alias stow="stow --ignore='.*\.(secret)'"
 alias mkdir="mkdir -p"
 alias cat="bat"
 alias grep="rga -. -i"
-alias cp='cp -ip'
-alias mv='mv -i'
-alias rm='rm -i'
+alias cp="cp -ip"
+alias mv="mv -i"
+alias rm="rm -i"
 alias ddg='ddgr'
+alias dig="doggo"
 
 ## git aliases
 function gci { git commit -m "$@"; }
@@ -165,52 +180,22 @@ alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%
 ## git checkout -b LocalName origin/remotebranchname (checkout a remote branch)
 
 ## npm aliases
-alias ni="npm install"
-alias nrs="npm run start -s --"
-alias nrb="npm run build -s --"
-alias nrd="npm run dev -s --"
-alias nrt="npm run test -s --"
-alias nrtw="npm run test:watch -s --"
-alias nrv="npm run validate -s --"
 alias rmn="rm -rf node_modules"
-alias flush-npm="rm -rf node_modules && npm i && echo NPM is done"
-
-## yarn aliases
-alias yar="yarn run"      # lists all the scripts we have available
-alias yab="yarn build"    # build dist directory for each package
-alias yal="yarn lint:fix" # format source and auto-fix eslint issues
-alias yac="yarn commit"   # open a Q&A prompt to help construct valid commit messages
-alias yas="yarn start"
-alias yasb="yarn storybook:start" # start storybook
-alias yat="yarn test"             # run the unit tests*
-alias yatw="yarn test:watch"      #run the unit tests for files changed on save
-
-## docker
-alias dockerstop='docker-compose stop'
-alias dockerrestart='docker-compose restart'
-alias dockerup='docker-compose up -d'
-alias dockerrm='docker-compose rm --all'
 
 ## other aliases
 alias zshrc="$EDITOR $HOME/.zshrc"
 alias topten="history | commands | sort -rn | head"
-alias myip="curl http://ipecho.net/plain; echo"
+alias myip="curl http://ifconfig.io"
 alias dirs='dirs -v | head -10'
 alias usage='du -h -d1'
 alias update="source $HOME/.zshrc"
 alias sshdir="cd ~/.ssh"
 alias runp="lsof -i "
-alias md="mkdir "
-alias ..='cd ..'
-alias ...='cd ../..'
-# alias vim="nvim"
-# alias vi="nvim"
-alias privatebin="privatebin -host https://privatebin.norgateav.com"
 
 alias pn='pnpm'
 alias pnx='pnpm dlx'
 
-alias emacs="emacsclient -c -a 'emacs'"
+#alias emacs="emacsclient -c -n -a 'emacs'"
 
 ## custom functions
 function gpr() {
@@ -245,9 +230,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
     alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
     alias touch="ad"
-    alias rm="rm -i"
-    alias mv="mv -i"
     alias sed="gsed"
+    alias gcc="/usr/local/bin/gcc-13"
 
     function static-dock {
         defaults write com.apple.dock static-only -bool $@
@@ -269,121 +253,45 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
 fi
 
+# Set the directory for zinit and plugins
+export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-#######################################################################
-# Zplug
-#######################################################################
+# Download zinit, if it's not there yet
+if [ ! -d "${ZINIT_HOME}" ]; then
+   mkdir -p "$(dirname ${ZINIT_HOME})"
+   git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
 # Quick fix for syntax highlighting
 # source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source ~/.zsh/dracula_zsh-syntax-highlighting.zsh
 
-# Zplug
-source ~/.zplug/init.zsh
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-history-substring-search
+zinit light hlissner/zsh-autopair
+zinit light MichaelAquilina/zsh-you-should-use
+zinit light MichaelAquilina/zsh-autoswitch-virtualenv
+zinit light b4b4r07/emoji-cli
 
-# Make sure to use double quotes
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "hlissner/zsh-autopair", defer:2
-zplug "MichaelAquilina/zsh-you-should-use"
-zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+#zinit snippet OMZP::git
+#zinit snippet OMZP::sudo
+#zinit snippet OMZP::archlinux
+#zinit snippet OMZP::aws
+#zinit snippet OMZP::kubectl
+#zinit snippet OMZP::kubectx
+#zinit snippet OMZP::command-not-found
 
-# Use the package as a command
-# And accept glob patterns (e.g., brace, wildcard, ...)
-# zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
+zinit cdreplay -q
 
-# Can manage everything e.g., other person's zshrc
-# zplug "tcnksm/docker-alias", use:zshrc
-
-# Disable updates using the "frozen" tag
-# zplug "k4rthik/git-cal", as:command, frozen:1
-
-# Grab binaries from GitHub Releases
-# and rename with the "rename-to:" tag
-# zplug "junegunn/fzf", \
-#     from:gh-r, \
-#     as:command, \
-#     use:"*darwin*amd64*"
-
-# Supports oh-my-zsh plugins and the like
-# zplug "plugins/git",   from:oh-my-zsh
-
-# Also prezto
-# zplug "modules/prompt", from:prezto
-
-# Load if "if" tag returns true
-# zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-
-# Run a command after a plugin is installed/updated
-# Provided, it requires to set the variable like the following:
-# ZPLUG_SUDO_PASSWORD="********"
-# zplug "jhawthorn/fzy", \
-#     as:command, \
-#     rename-to:fzy, \
-#     hook-build:"make && sudo make install"
-
-# Supports checking out a specific branch/tag/commit
-# zplug "b4b4r07/enhancd" #, at:v1
-# zplug "mollifier/anyframe", at:4c23cb60
-
-# Can manage gist file just like other packages
-# zplug "b4b4r07/79ee61f7c140c63d2786", \
-#     from:gist, \
-#     as:command, \
-#     use:get_last_pane_path.sh
-
-# Support bitbucket
-# zplug "b4b4r07/hello_bitbucket", \
-#     from:bitbucket, \
-#     as:command, \
-#     use:"*.sh"
-
-# Rename a command with the string captured with `use` tag
-# zplug "b4b4r07/httpstat", \
-#     as:command, \
-#     use:'(*).sh', \
-#     rename-to:'$1'
-
-# Group dependencies
-# Load "emoji-cli" if "jq" is installed in this example
-# zplug "stedolan/jq", \
-#     from:gh-r, \
-#     as:command, \
-#     rename-to:jq
-zplug "b4b4r07/emoji-cli" #, \
-#     on:"stedolan/jq"
-# Note: To specify the order in which packages should be loaded, use the defer
-#       tag described in the next section
-
-# Set the priority when loading
-# e.g., zsh-syntax-highlighting must be loaded
-# after executing compinit command and sourcing other plugins
-# (If the defer tag is given 2 or above, run after compinit command)
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# zplug "zdharma-continuum/fast-syntax-highlighting", defer:2
-
-# Can manage local plugins
-zplug "~/.zsh", from:local
-
-# Load theme file
-# zplug 'dracula/zsh', as:theme
-
-# Let zplug manage itself
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load # --verbose
-
-source $XDG_CONFIG_HOME/fzf/fzf.sh
-source $ENHANCD_DIR/enhancd.sh
+#source $XDG_CONFIG_HOME/fzf/fzf.sh
+#source $ENHANCD_DIR/enhancd.sh
 
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
@@ -392,8 +300,23 @@ eval "$(pyenv init -)"
 eval "$(atuin init zsh)"
 eval "$(rbenv init -)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(fx --comp zsh)"
+eval "$(fzf --zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+vv() {
+    # Assumes all configs exist in directories named ~/.config/nvim-*
+    local config=$(fd --max-depth 1 --glob 'nvim-*' ~/.config | fzf --prompt="Neovim Configs > " --height=~50% --layout=reverse --border --exit-0)
+ 
+    # If I exit fzf without selecting a config, don't open Neovim
+    [[ -z $config ]] && echo "No config selected" && return
+ 
+    # Open Neovim with the selected config
+    NVIM_APPNAME=$(basename $config) nvim $@
+}
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PATH=~/.console-ninja/.bin:$PATH
+#PATH=/usr/bin:$PATH
+
+. "$HOME/.cargo/env"
