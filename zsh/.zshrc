@@ -44,11 +44,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # pnpm end
 
     export PATH=$HOME/bin:$PATH
+    export PATH=$HOME/.local/bin:$PATH
     export PATH=/usr/local/bin:$PATH
+    export PATH=$HOME/.rbenv/shims:$PATH
     # export PATH=$HOME/Library/Python/3.8/bin:$PATH
     export PATH=/usr/local/sbin:$PATH
     export PATH=/usr/local/opt/ruby/bin:$PATH
-    export PATH=/usr/local/lib/ruby/gems/3.0.0/bin:$PATH
+    # export PATH=/usr/local/lib/ruby/gems/3.0.0/bin:$PATH
     export PATH=$HOME/.rbenv/bin:$PATH
     # export PATH=$HOME/.npm/bin:$PATH
     # export PATH=$HOME/.yarn/bin:$PATH
@@ -131,8 +133,8 @@ alias deleteDSFiles="find . -name '.DS_Store' -type f -delete"
 alias cls="clear"
 alias vi="nvim"
 alias vim="nvim"
-alias ls="exa --icons --header --git --group"
-alias tree="exa -T -a --icons -I 'node_modules|.git|.history'"
+alias ls="eza --icons --header --git --group"
+alias tree="eza -T -a --icons -I 'node_modules|.git|.history'"
 alias stow="stow --ignore='.*\.(secret)'"
 alias mkdir="mkdir -p"
 alias cat="bat"
@@ -142,6 +144,8 @@ alias mv="mv -i"
 alias rm="rm -i"
 alias ddg='ddgr'
 alias dig="doggo"
+alias neofetch="fastfetch"
+alias zcc="zig cc"
 
 ## git aliases
 function gci { git commit -m "$@"; }
@@ -231,7 +235,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
     alias touch="ad"
     alias sed="gsed"
-    alias gcc="/usr/local/bin/gcc-13"
+    alias gcc="/usr/local/bin/gcc-14"
 
     function static-dock {
         defaults write com.apple.dock static-only -bool $@
