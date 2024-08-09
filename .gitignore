@@ -6,3 +6,4 @@ git/.user.gitconfig
 cfcli/.cfcli.yml
 kube/.kube/config
 mc/.mc/config.json
+**/*lock.json

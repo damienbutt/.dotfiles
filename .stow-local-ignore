@@ -25,3 +25,7 @@ CVS
 ^/COPYING
 
 \.DS_Store
+
+\*lock.json
+\*lock.yml
+\*lock.yaml
