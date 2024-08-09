@@ -22,7 +22,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Fira Code" :size 18 :weight 'regular))
+(setq doom-font (font-spec :family "Fira Code" :size 18.0 :weight 'regular))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -87,3 +87,6 @@
   :hook (after-init . global-emojify-mode))
 
 (setq delete-by-moving-to-trash t)
+
+;; Projectile
+(setq projectile-project-search-path '("~/Projects"))
