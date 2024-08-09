@@ -83,7 +83,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then
 fi
 
 # Env
-export NVIM_APPNAME="nvim-lazyvim"
+export NVIM_APPNAME=""
 export ZPLUG_HOME="$HOME/.zplug"
 export PAGER="less"
 export COLORTERM="truecolor"
