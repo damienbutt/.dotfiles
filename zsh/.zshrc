@@ -239,6 +239,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sed="gsed"
     alias gcc="/usr/local/bin/gcc-14"
 
+    alias ghub="kill \$(ps aux | grep lghub | grep -v grep | awk '{print \$2}'); sleep 4; open /Applications/lghub.app/Contents/MacOS/lghub_agent.app; open /Applications/lghub.app/Contents/MacOS/lghub_updater.app; open /Applications/lghub.app;"
+
     function static-dock {
         defaults write com.apple.dock static-only -bool $@
         killall Dock
