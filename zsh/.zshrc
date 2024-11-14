@@ -326,5 +326,3 @@ vv() {
 
 PATH=~/.console-ninja/.bin:$PATH
 #PATH=/usr/bin:$PATH
-
-. "$HOME/.cargo/env"
