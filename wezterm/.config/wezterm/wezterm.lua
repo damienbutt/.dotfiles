@@ -42,37 +42,27 @@ config = {
 	keys = {
 		{
 			key = "Enter",
-			mod = "OPT",
-			action = wezterm.action.DisableDefaultAssignment,
-		},
-		{
-			key = "Enter",
-			mod = "ALT",
-			action = wezterm.action.DisableDefaultAssignment,
-		},
-		{
-			key = "Enter",
-			mod = "META",
+			mods = "ALT",
 			action = wezterm.action.DisableDefaultAssignment,
 		},
 		{
 			key = "h",
-			mod = "OPT",
+			mods = "OPT",
 			action = wezterm.action.DisableDefaultAssignment,
 		},
 		{
 			key = "j",
-			mod = "OPT",
+			mods = "OPT",
 			action = wezterm.action.DisableDefaultAssignment,
 		},
 		{
 			key = "k",
-			mod = "OPT",
+			mods = "OPT",
 			action = wezterm.action.DisableDefaultAssignment,
 		},
 		{
 			key = "l",
-			mod = "OPT",
+			mods = "OPT",
 			action = wezterm.action.DisableDefaultAssignment,
 		},
 	},
