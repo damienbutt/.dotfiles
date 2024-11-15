@@ -35,6 +35,15 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 autoload -Uz compinit && compinit
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Check for Homebrew
+    if [[ $(command -v brew) == "" ]]; then
+        echo "Installing Homebrew"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    
+    # Ensure required programs are installed
+    /usr/bin/ruby ~/.scripts/install.rb
+
     # pnpm
     export PNPM_HOME="$HOME/Library/pnpm"
     case ":$PATH:" in
