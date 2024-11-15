@@ -158,6 +158,14 @@ alias dig="doggo"
 alias neofetch="fastfetch"
 alias zcc="zig cc"
 
+alias zj="zellij"
+alias zjl="zellij ls"
+alias zja="zellij attach"
+alias zjk="zellij kill-session"
+alias zjka="zellij kill-all-sessions"
+alias zjd="zellij delete-session"
+alias zjda="zellij delete-all-sessions"
+
 ## git aliases
 function gci { git commit -m "$@"; }
 function gaci { git commit -am "$@"; }
