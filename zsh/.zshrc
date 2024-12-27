@@ -78,6 +78,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH=$HOME/.config/emacs/bin:$PATH
     export PATH=/usr/local/opt/bc/bin:$PATH
     export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+    export PATH=/usr/local/opt/openjdk/bin:$PATH
 fi
 
 if [[ "$OSTYPE" == "linux"* ]]; then
@@ -118,6 +119,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export SSH_AUTH_SOCK=$HOME/Library/Containers/org.hejki.osx.sshce.agent/Data/socket.ssh
     export LDFLAGS="-L/usr/local/opt/ruby/lib"
     export CPPFLAGS="-I/usr/local/opt/ruby/include"
+    export CPPFLAGS="-I/usr/local/opt/openjdk/include $CPPFLAGS"
     export PKG_CONFIG_PATH=/usr/local/opt/ruby/lib/pkgconfig
     export PINENTRY_USER_DATA="USE_CURSES=1"
 
@@ -328,7 +330,7 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(fx --comp zsh)"
 eval "$(fzf --zsh)"
 
-vv() {
+function vv() {
     # Assumes all configs exist in directories named ~/.config/nvim-*
     local config=$(fd --max-depth 1 --glob 'nvim-*' ~/.config | fzf --prompt="Neovim Configs > " --height=~50% --layout=reverse --border --exit-0)
  
@@ -337,6 +339,15 @@ vv() {
  
     # Open Neovim with the selected config
     NVIM_APPNAME=$(basename $config) nvim $@
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
